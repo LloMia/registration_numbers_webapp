@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/reg-Numbers.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <title></title>
+    <h1>REGISTRATION APP</h1>
+</head>
+
+<body>
+    <form class="" action="/index" method="post">
+        <input type="text" name="reg" placeholder="enter Registration number" required="">
+        <button type="submit" name="button">ADD</button>
+    </form>
+    <form class="" action="/index/search" method="post">
+
+
+        <div class="radio">
+            <label><input type="radio" name="regOpt" value="CA" required="">Cape Town</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="regOpt" value="CY" required="">Bellville</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="regOpt" value="CJ" required="">Paarl</label>
+        </div>
+        <br><button type="submit" id="btnfilt">Filter</button>
+    </form>
+    <div class="output">
+        <ul>
+            {{#each regNumber}}
+                <li>{{this.regNumber}}</li><br>
+            {{/each}}
+        </ul>
+
+        <ul>
+            {{#each myData}}
+                <li>{{this.regNumber}}</li><br>
+            {{/each}}
+        </ul>
+    </div>
+</body>
+
+</html>

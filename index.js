@@ -1,39 +1,47 @@
 var express = require('express');
 var app = express();
-var regList = [];
+
+var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
+const regRoutes = require('./reg');
+const mongoose = require('mongoose');
+const Models = require('./models');
+const models = Models(process.env.MONGO_DB_URL || 'mongodb://localhost/RegistrationPlates')
+const routes = regRoutes(models);
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
-app.get('/greeting', function(req, res) {
+app.use(express.static('public'));
+app.engine('handlebars', exphbs({
+    defaultLayout: "main"
+}));
 
-  var regNumber = req.params.reg
-
-  regList.push(regNumber)
-  console.log(nameList);
-  res.render('/index', name)
-});
-app.post('/Reg',greet())
+app.set('view engine', 'handlebars');
 
 
-// app.get('/greeted', function(req, res) {
+app.get('/', function(req, res) {
+    res.render('index');
+})
+
+
+app.get('/index',routes.addReg );
+app.post('/index',routes.addReg);
+app.get('/index/search',routes.filterReg );
+app.post('/index/search',routes.filterReg);
+
+
+
+// app.get('/reg/:reg', function(req, res){
 //
-//     res.send(nameList)
-//
+//   var regNumber = req.params.reg
+//     res.send(regNumber)
 // })
-//
-// app.get('/counter/:name', function(req, res) {
-//
-//     var name = req.params.name
-//
-//     function counter(input) {
-//         return input == name
-//     }
-//     var counter = nameList.filter(counter).length
-//
-//     res.send('hello, ' + name + ' has been greeted ' + counter + ' time(s)')
-// })
 
-var server = app.listen(3000, function() {
+
+var server = app.listen(3011, function() {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Example app listening on port 3000!')
+    console.log('Example app listening on port 3011!')
 })
