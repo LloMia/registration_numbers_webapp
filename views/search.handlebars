@@ -1,9 +1,24 @@
-<link rel="stylesheet" href="/reg-Numbers.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<h1>SEARCH REGISTRATION</h1>
 
 
+<form class="" action="/index/search" method="post">
 
+    <div class="radio">
+        <label><input type="radio" name="regOpt" value="CA" required="">Cape Town</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="regOpt" value="CY" required="">Bellville</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="regOpt" value="CJ" required="">Paarl</label>
+    </div>
+    <br><button type="submit" id="btnfilt">Filter</button>
+</form>
 
-  {{Data}}
+<ul>
+    {{#each myData}}
+        <li id = "reggy">{{this.regNumber}}</li><br>
+    {{/each}}
+</ul>
+</div>

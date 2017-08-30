@@ -28,8 +28,10 @@ app.get('/', function(req, res) {
 
 app.get('/index',routes.addReg );
 app.post('/index',routes.addReg);
-app.get('/index/search',routes.filterReg );
+app.get('/index/search',routes.searchScreen );
 app.post('/index/search',routes.filterReg);
+app.get('/reset',routes.clear );
+app.post('/reset',routes.clear);
 
 
 
