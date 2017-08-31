@@ -1,7 +1,6 @@
 {
   "name": "registration_numbers_webapp",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "express": "^4.15.4",
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/LloMia/registration_numbers_webapp/issues"
   },
-  "homepage": "https://github.com/LloMia/registration_numbers_webapp#readme"
+  "homepage": "https://github.com/LloMia/registration_numbers_webapp#readme",
+  "description": ""
 }
