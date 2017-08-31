@@ -32,6 +32,9 @@ app.get('/index/search',routes.searchScreen );
 app.post('/index/search',routes.filterReg);
 app.get('/reset',routes.clear );
 app.post('/reset',routes.clear);
+app.get('/view',routes.show );
+app.post('/view',routes.show);
+
 
 
 

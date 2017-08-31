@@ -1,9 +1,9 @@
 module.exports = function(models) {
 
-//check if textbox is not empty |  if (d.regNumber !== undefined)
-//find entered Plate in the db
-// if plate exist, render to home
-//if plate doesnt exit, create a new 1
+    //check if textbox is not empty |  if (d.regNumber !== undefined)
+    //find entered Plate in the db
+    // if plate exist, render to home
+    //if plate doesnt exit, create a new 1
 
 
 
@@ -14,65 +14,65 @@ module.exports = function(models) {
 
         if (d.regNumber !== undefined) {
 
-          models.reg.findOne({regNumber: req.body.reg}, function(err, foundRegNum) {
-            if (err) {
-              return done(err)
-            }
+            models.reg.findOne({
+                regNumber: req.body.reg
+            }, function(err, foundRegNum) {
+                if (err) {
+                    return done(err)
+                }
 
-            if (foundRegNum === null) {
+                if (foundRegNum === null) {
 
-              models.reg.create({
-                  regNumber: req.body.reg
-              }, function(err, result) {
-                  if (err) {
-                      return next(err)
-                  }
+                    models.reg.create({
+                        regNumber: req.body.reg
+                    }, function(err, result) {
+                        if (err) {
+                            return next(err)
+                        }
 
-                  models.reg.find({}, function(err, done) {
-                      if (err) {
-                          return done(err)
-                      }
+                        models.reg.find({}, function(err, done) {
+                            if (err) {
+                                return done(err)
+                            }
 
-                      var regData = {
-                          regNumber: done
-                      }
-                      console.log(regData);
-                      res.render('index', regData)
-                  })
+                            var regData = {
+                                regNumber: done
+                            }
+                            console.log(regData);
+                            res.render('index', regData)
+                        })
 
-              })
-            }
+                    })
+                }
 
-            if (foundRegNum !== null) {
-              console.log('Plate exist');
-              res.render('index')
-            }
+                if (foundRegNum !== null) {
+                    console.log('Plate exist');
+                    res.render('index')
+                }
 
-          })
+            })
 
-        }
-
-        else {
+        } else {
             res.render('index')
         }
 
 
     }
 
-const searchScreen = function(req,res){
-  models.reg.find({}, function(err, done) {
-      if (err) {
-          return done(err)
-      }
+    const searchScreen = function(req, res) {
+        models.reg.find({}, function(err, done) {
+            if (err) {
+                return done(err)
+            }
 
-      var regData = {
-          regNumber: done
-      }
-      console.log(regData);
-      res.render('search', regData)
-  })
+            var regData = {
+                regNumber: done
+            }
+            console.log(regData);
+            res.render('search', regData)
+        })
 
-}
+    }
     const filterReg = function(req, res, next) {
 
         var locationReg = req.body.regOpt;
@@ -96,20 +96,37 @@ const searchScreen = function(req,res){
     }
 
     const clear = function(req, res) {
-    models.reg.remove(function(err) {
-        if (err) {
+        models.reg.remove(function(err) {
+            if (err) {
 
-            return done(err);
+                return done(err);
 
+            }
+            res.render('search')
+        })
+    }
+
+    const show = function(req, res) {
+        var locReg = {
+          regNumber: req.body.reg
         }
-        res.render('search')
-    })
-}
+        models.reg.find({}, function(err, viewReg) {
+            if (err) {
+                return done(err)
+            } else {
+                console.log(viewReg);
+                res.render('viewAll', {
+                    registration:viewReg
+                })
+            }
+        })
+    }
     return {
 
         addReg,
         filterReg,
         clear,
-        searchScreen
+        searchScreen,
+        show
     }
 }

@@ -6,6 +6,17 @@
   height: 50px;
   font-size: 2.5em;
   border-style: solid;
+  text-align: center;
+  float: left;
+}
+ul{
   list-style: none;
+  display: inline-block;
+}
+body{
+  background-image: url('cars.jpg');
+
+}
+.body{
   text-align: center;
 }
