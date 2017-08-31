@@ -44,9 +44,12 @@ app.post('/view',routes.show);
 //     res.send(regNumber)
 // })
 
-
-var server = app.listen(3011, function() {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log('Example app listening on port 3011!')
-})
+app.set('port', process.env.PORT || 8080);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+// var server = app.listen(3011, function() {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log('Example app listening on port 3011!')
+// })
