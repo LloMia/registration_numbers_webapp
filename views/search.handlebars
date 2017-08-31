@@ -4,21 +4,21 @@
 
 <form class="" action="/index/search" method="post">
 
-    <div class="radio">
+
         <label><input type="radio" name="regOpt" value="CA" required="">Cape Town</label>
-  
-    
+
+
         <label><input type="radio" name="regOpt" value="CY" required="">Bellville</label>
-    
-    
+
+
         <label><input type="radio" name="regOpt" value="CJ" required="">Paarl</label>
-    </div>
+
     <button type="submit" id="btnfilt">Filter</button>
 </form>
 
 <ul>
     {{#each myData}}
-        <li id = "reggy">{{this.regNumber}}</li><br>
+        <li id = "reggy">{{this.regNumber}}</li>
     {{/each}}
 </ul>
 </div>
